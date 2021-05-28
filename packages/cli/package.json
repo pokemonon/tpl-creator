@@ -1,0 +1,38 @@
+{
+    "name": "@pokemonon/tpl-cli",
+    "version": "0.0.0",
+    "description": "> TODO: description",
+    "author": "huahua",
+    "homepage": "",
+    "license": "ISC",
+    "bin": {
+        "tpl": "./dist/tpl.js"
+    },
+    "publishConfig": {
+        "access": "public"
+    },
+    "scripts": {
+        "build": "rm -rf dist && tsup bin -d dist --external lodash --sourcemap",
+        "dev": "npm run build -- --watch"
+    },
+    "dependencies": {
+        "@pokemonon/knife": "^1.0.0-beta.5",
+        "chalk": "^4.1.0",
+        "commander": "^6.2.0",
+        "debug": "^4.2.0",
+        "ejs": "^3.1.6",
+        "fs-extra": "^9.0.1",
+        "globby": "^11.0.3",
+        "inquirer": "^8.1.0",
+        "tapable": "^2.2.0",
+        "yaml-front-matter": "^4.1.1"
+    },
+    "devDependencies": {
+        "@types/debug": "^4.1.5",
+        "@types/fs-extra": "^9.0.2",
+        "@types/inquirer": "^7.3.1",
+        "@types/yaml-front-matter": "^4.1.0",
+        "eslint-import-resolver-typescript": "^2.4.0",
+        "eslint-plugin-import": "^2.23.3"
+    }
+}
