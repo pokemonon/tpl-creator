@@ -11,7 +11,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dump": "HUSKY=0 lerna version --conventional-commits",
     "release": "lerna publish from-git --yes",
-    "clean": "yarn workspaces run clean && lerna clean"
+    "clean": "yarn workspaces run clean && lerna clean",
+    "prepare": "husky install"
   },
   "config": {
     "commitizen": {
