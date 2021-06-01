@@ -1,5 +1,5 @@
 {
-  "name": "@pokemonon/tpl-cli-preset",
+  "name": "@pokemonon/tpl-cli-plugin-pop",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
