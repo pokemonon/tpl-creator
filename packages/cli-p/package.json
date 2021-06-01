@@ -1,0 +1,14 @@
+{
+  "name": "@pokemonon/tpl-cli-preset",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsup index.ts --out-dir .",
+    "dev": "npm run build -- --watch .",
+    "clean": "rimraf index.js"
+  },
+  "dependencies": {
+    "@pokemonon/tpl-cli": "^0.0.0"
+  }
+}

@@ -1,1 +1,1 @@
-console.log('plugin1 main.js');
+console.log('plugin1 main.js <%= description %>');

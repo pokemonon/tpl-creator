@@ -1,20 +1,18 @@
-import * as path from 'path';
-
-import { isArray, sureArray } from '@pokemonon/knife';
-import { SyncWaterfallHook } from 'tapable';
-import { prompt, createPromptModule, QuestionCollection } from 'inquirer';
+import { createPromptModule, QuestionCollection } from 'inquirer';
 
 import Container, { Context } from './Container';
-import { PresetConfig } from './config';
-import pkg from './lib/pkg';
+import { formatConfig } from './config';
 import { Plugin } from './plugins';
-import { formatConfig, isLocalSource } from './lib/utils';
 import { PluConfigArr, PreConfigArr } from './Creator';
 
-export declare class Preset extends Container {
-    constructor(ctx: Context, opts?: Record<string, unknown>)
-    apply(api: PresetsAPI): PresetResult
-    static setPrompts(api: PresetsAPI): QuestionCollection
+export class Preset extends Container {
+    opts: Record<string, unknown>
+    constructor(ctx: Context, opts) {
+        super(ctx);
+        this.opts = opts;
+    }
+    apply(api: PresetsAPI): PresetResult { return {}; }
+    static setPrompts(api: PresetsAPI): QuestionCollection { return []; }
 }
 
 export type PreConfig = typeof Preset | [typeof Preset, Record<string, unknown>?];

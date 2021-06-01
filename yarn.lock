@@ -936,10 +936,10 @@
   dependencies:
     "@octokit/openapi-types" "^7.0.0"
 
-"@pokemonon/knife@^1.0.0-beta.5":
-  version "1.0.0-beta.5"
-  resolved "https://registry.yarnpkg.com/@pokemonon/knife/-/knife-1.0.0-beta.5.tgz#7f26020b6355dcbd8ff2ef0e8197caf0ae51df05"
-  integrity sha512-D1mOyC+HKb2M2Cq3z/8qn5SpuEV8G5NHWCyk6sSCvPT5gf0W8QHPd6ZE3DELCPvdpO0iCBhRys2pJ8SwwNSo7Q==
+"@pokemonon/knife@^1.0.0-beta.6":
+  version "1.0.0-beta.6"
+  resolved "https://registry.yarnpkg.com/@pokemonon/knife/-/knife-1.0.0-beta.6.tgz#597eebd6c1ffe00e5534952e4546105cf0f764e6"
+  integrity sha512-NAfUz7j+u1zfbl4vPWU1UdNy7jQij0tdiBc6BDZUoKeXvDccWr6b1fybRrfMefeVbfezOXniIp+OpP/KiPlY8A==
   dependencies:
     chalk "^4.1.1"
     execa "^5.0.0"
@@ -964,6 +964,11 @@
   version "4.1.5"
   resolved "https://registry.yarnpkg.com/@types/debug/-/debug-4.1.5.tgz#b14efa8852b7768d898906613c23f688713e02cd"
   integrity sha512-Q1y515GcOdTHgagaVFhHnIFQ38ygs/kmxdNpvpou+raI9UO3YZcHDngBSYKQklcKlvA7iuQlmIKbzvmxcOE9CQ==
+
+"@types/ejs@^3.0.6":
+  version "3.0.6"
+  resolved "https://registry.yarnpkg.com/@types/ejs/-/ejs-3.0.6.tgz#aca442289df623bfa8e47c23961f0357847b83fe"
+  integrity sha512-fj1hi+ZSW0xPLrJJD+YNwIh9GZbyaIepG26E/gXvp8nCa2pYokxUYO1sK9qjGxp2g8ryZYuon7wmjpwE2cyASQ==
 
 "@types/fs-extra@^9.0.2":
   version "9.0.11"

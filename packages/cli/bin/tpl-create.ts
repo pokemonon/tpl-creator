@@ -1,7 +1,7 @@
-import * as fs from 'fs';
 import * as path from 'path';
 
 import { program } from 'commander';
+import { prompt } from 'inquirer';
 
 import { create } from '../src/create';
 
@@ -36,9 +36,24 @@ export interface Context {
 async function start() {
     const cwd = process.cwd();
     const opts = program.opts() as Opts;
+
+    let appName = program.args[0];
+    if (!appName || appName === 'undefined') {
+        const ans = await prompt([
+            {
+                type: 'input',
+                message: '请输入项目名',
+                name: 'appName',
+                validate: (ipt) => !!ipt,
+            },
+        ]);
+
+        appName = ans.appName;
+    }
     
-    const appPath = path.resolve(cwd, program.args[0]);
-    const appName = appPath.split(path.sep).slice(-1)[0];
+    const appPath = path.resolve(cwd, appName);
+    appName = appPath.split(path.sep).slice(-1)[0];
+
 
     const ctx = {
         appName,

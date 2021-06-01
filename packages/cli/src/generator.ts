@@ -5,6 +5,7 @@ import globby from 'globby';
 import { loadFront } from 'yaml-front-matter';
 import { locateCallFile, writeFiles } from '@pokemonon/knife/node';
 import { sureArray } from '@pokemonon/knife';
+import { render as ejsRender } from 'ejs';
 
 import Container, { Context } from './Container';
 
@@ -83,7 +84,9 @@ export class GeneratorAPI extends Container {
                 return content.match(emptyBlckRE)![1];
             }
         }
-        return content;
+        // return content;
+        const info = this.resolveData(data);
+        return ejsRender(content, info, ejsOpts);
         // if (tFile) {
         //     const 
         // }
@@ -106,6 +109,7 @@ export class GeneratorAPI extends Container {
 
     private resolveData(additionData = {}) {
         return {
+            ctx: this.ctx,
             ...additionData,
         };
     }

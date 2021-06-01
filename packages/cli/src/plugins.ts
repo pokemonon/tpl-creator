@@ -5,13 +5,17 @@ import Container, { Context } from './Container';
 import { PluConfigArr } from './Creator';
 import { GeneratorAPI } from './generator';
 
-export declare class Plugin extends Container {
-    constructor(ctx: Context, opts?: Record<string, unknown>)
-    apply(api: PluginAPI): PluginAPI
-    static setPrompts(api: PluginAPI): QuestionCollection
+export class Plugin extends Container {
+    opts: Record<string, unknown>
+    constructor(ctx: Context, opts) {
+        super(ctx);
+        this.opts = opts;
+    }
+    apply(api: PluginsAPI): void {}
+    static setPrompts(api: PluginsAPI): QuestionCollection { return []; }
 }
 
-export class PluginAPI extends Container {
+export class PluginsAPI extends Container {
     plugins: Plugin[] = []
     pluginConfigs: PluConfigArr[]
     generatorAPI: GeneratorAPI
@@ -19,6 +23,8 @@ export class PluginAPI extends Container {
         beforeGenerate: new SyncHook(),
         afterGenerate: new SyncHook(),
     })
+
+    #currentPlugin!: Plugin
 
     constructor(ctx: Context, pluginConfigs: PluConfigArr[]) {
         super(ctx);
@@ -45,6 +51,7 @@ export class PluginAPI extends Container {
         });
 
         this.plugins.forEach(p => {
+            this.#currentPlugin = p;
             p.apply(this);
         });
 
@@ -52,7 +59,10 @@ export class PluginAPI extends Container {
     }
 
     render(source: string, additionalData = {}, ejsOptions = {}) {
-        this.generatorAPI.render(source, additionalData, ejsOptions);
+        this.generatorAPI.render(source, {
+            ...this.#currentPlugin.opts,
+            ...additionalData,
+        }, ejsOptions);
     }
 
     async generate() {

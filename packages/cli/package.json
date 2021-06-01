@@ -5,6 +5,7 @@
     "author": "huahua",
     "homepage": "",
     "license": "ISC",
+    "main": "./dist/index.js",
     "bin": {
         "tpl": "./dist/tpl.js"
     },
@@ -12,11 +13,14 @@
         "access": "public"
     },
     "scripts": {
-        "build": "rm -rf dist && tsup bin -d dist --external lodash --sourcemap",
-        "dev": "npm run build -- --watch"
+        "build": "npm run clean && npm run build:cli && npm run build:src",
+        "build:cli": "tsup bin",
+        "build:src": "tsup src/index.ts --dts",
+        "dev": "npm run build:cli -- --watch & npm run build:src -- --watch",
+        "clean": "rimraf dist"
     },
     "dependencies": {
-        "@pokemonon/knife": "^1.0.0-beta.5",
+        "@pokemonon/knife": "^1.0.0-beta.6",
         "chalk": "^4.1.0",
         "commander": "^6.2.0",
         "debug": "^4.2.0",
@@ -29,6 +33,7 @@
     },
     "devDependencies": {
         "@types/debug": "^4.1.5",
+        "@types/ejs": "^3.0.6",
         "@types/fs-extra": "^9.0.2",
         "@types/inquirer": "^7.3.1",
         "@types/yaml-front-matter": "^4.1.0",
