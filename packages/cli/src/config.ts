@@ -3,7 +3,8 @@ import * as path from 'path';
 import { getJsonData, isArray, isObject, isString } from '@pokemonon/knife';
 import { importDefault } from '@pokemonon/knife/node'; 
 
-import { Context, Opts } from '../bin/tpl-create';
+import { Opts } from '../bin/tpl-create';
+import { Context } from './Container';
 import { Preset } from './presets';
 import { Plugin } from './plugins';
 import { isLocalSource } from './lib/utils';

@@ -1,15 +1,18 @@
 {
-    "name": "cli-plugin-husky",
+    "name": "@pokemonon/cli-plugin-husky",
     "version": "0.0.0",
     "description": "husky",
     "main": "index.js",
     "license": "MIT",
+    "publishConfig": {
+        "access": "public"
+    },
     "scripts": {
-        "build": "tsup index.ts --out-dir .",
-        "dev": "npm run build -- --watch"
+        "build": "tsup index.ts --out-dir ."
     },
     "dependencies": {
-        "@pokemonon/tpl-cli": "latest"
+        "@pokemonon/knife": "^1.0.0-beta.6",
+        "@pokemonon/tpl-cli": "^0.0.0"
     },
     "devDependencies": {
         "tsup": "^4.11.1",

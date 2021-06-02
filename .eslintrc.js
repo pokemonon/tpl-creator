@@ -39,6 +39,7 @@ module.exports = {
         '@typescript-eslint/no-var-requires': 0,
         '@typescript-eslint/no-empty-function': 0,
         '@typescript-eslint/no-non-null-assertion': 0,
+        '@typescript-eslint/ban-ts-comment': 0,
 
         'import/order': ['error', {
             groups: ['builtin', 'internal', 'external', ['parent', 'sibling', 'index']],

@@ -1,5 +1,5 @@
 import Creator from './Creator';
-import { Context } from '../bin/tpl-create';
+import { Context } from './Container';
 import { loadConfig } from './config';
 
 export const create = (ctx: Context) => {

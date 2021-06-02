@@ -10,5 +10,12 @@
         "skipLibCheck": true, /* Skip type checking of declaration files. */
         "forceConsistentCasingInFileNames": true, /* Disallow inconsistently-cased references to the same file. */
         "resolveJsonModule": true,
-    }
+        "paths": {
+            "@pokemonon/knife*": [
+                "../../node_modules/@pokemonon/knife/dist*",
+                "@pokemonon/knife/dist*",
+                "./node_modules/@pokemonon/knife/dist*"
+            ]
+        }
+    },
 }

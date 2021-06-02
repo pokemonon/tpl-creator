@@ -22,7 +22,11 @@ export class GeneratorAPI extends Container {
 
     // 加载文件信息
     resolveFiles() {
-        const filePaths = globby.sync(['**/*'], { cwd: this.ctx.appPath });
+        // todo 文件多大过多？
+        // todo 排除不必要的文件
+        const filePaths = globby.sync(['**/*'], {
+            cwd: this.ctx.appPath,
+        });
         filePaths.forEach(p => {
             const targetPath = path.resolve(this.ctx.appPath, p);
             this.files[targetPath] = readFileSync(targetPath, { encoding: 'utf-8' });
@@ -104,6 +108,10 @@ export class GeneratorAPI extends Container {
 
     generate() {
         writeFiles(this.ctx.appPath, this.files);
+    }
+
+    findFile(path: string) {
+        return Object.keys(this.files).find(filePath => filePath.endsWith(path));
     }
 
 

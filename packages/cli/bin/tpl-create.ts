@@ -4,6 +4,7 @@ import { program } from 'commander';
 import { prompt } from 'inquirer';
 
 import { create } from '../src/create';
+import { Context } from '../src/Container';
 
 program
     // .command('create <app-name>')
@@ -27,12 +28,13 @@ export interface Opts {
     plugin?: string[];
     inlinePlugin?: string[];
 }
-export interface Context {
-    appName: string;
-    appPath: string;
-    cwd: string;
-    opts: Opts;
-}
+// export interface Context {
+//     appName: string;
+//     appPath: string;
+//     cwd: string;
+//     opts: Opts;
+// }
+// export type Context = ContainerCtx<Opts>
 async function start() {
     const cwd = process.cwd();
     const opts = program.opts() as Opts;
@@ -52,10 +54,10 @@ async function start() {
     }
     
     const appPath = path.resolve(cwd, appName);
-    appName = appPath.split(path.sep).slice(-1)[0];
+    appName = appPath.split(path.sep).pop()!;
 
 
-    const ctx = {
+    const ctx: Context = {
         appName,
         appPath,
         cwd,

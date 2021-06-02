@@ -1,5 +1,5 @@
 import { createPromptModule, QuestionCollection } from 'inquirer';
-import { SyncHook, SyncWaterfallHook } from 'tapable';
+import { SyncHook, SyncWaterfallHook, AsyncSeriesHook } from 'tapable';
 
 import Container, { Context } from './Container';
 import { PluConfigArr } from './Creator';
@@ -20,8 +20,8 @@ export class PluginsAPI extends Container {
     pluginConfigs: PluConfigArr[]
     generatorAPI: GeneratorAPI
     hooks = Object.freeze({
-        beforeGenerate: new SyncHook(),
-        afterGenerate: new SyncHook(),
+        beforeGenerate: new AsyncSeriesHook(),
+        afterGenerate: new AsyncSeriesHook(),
     })
 
     #currentPlugin!: Plugin
@@ -66,8 +66,10 @@ export class PluginsAPI extends Container {
     }
 
     async generate() {
-        this.hooks.beforeGenerate.call(() => {});
+        // @ts-ignore
+        await this.hooks.beforeGenerate.callAsync(() => {});
         this.generatorAPI.generate();
-        this.hooks.afterGenerate.call(() => {});
+        // @ts-ignore
+        await this.hooks.afterGenerate.callAsync(() => {});
     }
 }

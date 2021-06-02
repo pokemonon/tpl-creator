@@ -1,14 +1,17 @@
 {
-  "name": "@pokemonon/tpl-cli-plugin-pop",
-  "version": "1.0.0",
-  "main": "index.js",
-  "license": "MIT",
-  "scripts": {
-    "build": "tsup index.ts --out-dir .",
-    "dev": "npm run build -- --watch .",
-    "clean": "rimraf index.js"
-  },
-  "dependencies": {
-    "@pokemonon/tpl-cli": "^0.0.0"
-  }
+    "name": "@pokemonon/tpl-cli-plugin-pop",
+    "version": "1.0.0",
+    "main": "index.js",
+    "license": "MIT",
+    "publishConfig": {
+        "access": "public"
+    },
+    "scripts": {
+        "build": "tsup index.ts --out-dir .",
+        "dev": "npm run build -- --watch .",
+        "clean": "rimraf index.js"
+    },
+    "dependencies": {
+        "@pokemonon/tpl-cli": "^0.0.0"
+    }
 }

@@ -28,6 +28,7 @@
         "fs-extra": "^9.0.1",
         "globby": "^11.0.3",
         "inquirer": "^8.1.0",
+        "parse-gitignore": "^1.0.1",
         "tapable": "^2.2.0",
         "yaml-front-matter": "^4.1.1"
     },

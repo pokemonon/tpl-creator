@@ -4,17 +4,17 @@
 // import { Context } from '../bin/tpl-create';
 
 // export { Context };
-export interface Context<Opts = Record<string, unknown>> {
+export interface Context {
     appName: string;
     appPath: string;
     cwd: string;
-    opts: Opts;
+    opts: any;
 }
 
-class Container<Ctx = Record<string, unknown>> {
-    ctx: Context<Ctx>
+class Container {
+    ctx: Context
 
-    constructor(ctx: Context<Ctx>) {
+    constructor(ctx: Context) {
         this.ctx = ctx;
     }
 }
