@@ -22,19 +22,19 @@ class PluginTpl extends Plugin {
                 'conventional-changelog-cli': '^2.1.1',
                 'cz-conventional-changelog': '^3.3.0',
                 'husky': '^6.0.0',
+                'standard-version': '^9.3.0',
             });
             Object.assign(pkg.config = pkg.config || {}, {
                 'commitizen': {
                     'path': './node_modules/cz-conventional-changelog',
                 },
             });
-            if (!pkg.scripts || !pkg.scripts.changelog) {
-                Object.assign(pkg.scripts, {
-                    'changelog': 'conventional-changelog -p angular -i CHANGELOG.md -s -r 0',
-                });
-            }
+            Object.assign(pkg.scripts = pkg.scripts || {}, {
+                'changelog': 'conventional-changelog -p angular -i CHANGELOG.md -s -r 0',
+                'release': 'HUSKY=0 standard-version --release-as',
+            });
 
-            api.generatorAPI.files['package.json'] = JSON.stringify(pkg, null, 4);
+            api.generatorAPI.files[pkgPath] = JSON.stringify(pkg, null, 4);
 
             api.render('./templates/npm');
 

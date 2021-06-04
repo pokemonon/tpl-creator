@@ -8,7 +8,7 @@
         "build": "tsup index.ts --out-dir ."
     },
     "dependencies": {
-        "@pokemonon/tpl-cli": "latest"
+        "@pokemonon/tpl-cli": "^0.0.0"
     },
     "devDependencies": {
         "tsup": "^4.11.1",

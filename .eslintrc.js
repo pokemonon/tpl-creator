@@ -8,9 +8,9 @@ module.exports = {
         '@typescript-eslint',
     ],
     'settings': {
-        'import/parsers': {
-            '@typescript-eslint/parser': ['.ts', '.tsx'],
-        },
+        // 'import/parsers': {
+        //     '@typescript-eslint/parser': ['.ts', '.tsx'],
+        // },
         'import/resolver': {
             'typescript': {
                 'alwaysTryTypes': true,
