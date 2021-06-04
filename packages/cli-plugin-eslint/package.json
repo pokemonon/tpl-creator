@@ -1,0 +1,18 @@
+{
+    "name": "cli-plugin-eslint",
+    "version": "0.0.0",
+    "description": "tpl plugin for eslint",
+    "main": "index.js",
+    "license": "MIT",
+    "scripts": {
+        "build": "tsup index.ts --out-dir ."
+    },
+    "dependencies": {
+        "@pokemonon/knife": "^1.0.0-beta.6",
+        "@pokemonon/tpl-cli": "^0.0.0"
+    },
+    "devDependencies": {
+        "tsup": "^4.11.1",
+        "typescript": "^4.3.2"
+    }
+}
