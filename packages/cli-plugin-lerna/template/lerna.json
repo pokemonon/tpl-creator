@@ -1,0 +1,10 @@
+{
+    "npmClient": "yarn",
+    "useWorkspaces": true,
+    "version": <% if (isIndependent) { %>"independent"<% } else { %>"1.0.0"<% } %>,
+    "command": {
+        "publish": {
+            "message": "chore(release): publish"
+        }
+    }
+}

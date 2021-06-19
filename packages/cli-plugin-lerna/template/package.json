@@ -1,0 +1,19 @@
+{
+    "name": "<%= ctx.appName %>",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "private": true,
+    "workspaces": [
+        "packages/*"
+    ],
+    "scripts": {
+        "clean": "yarn workspaces run clean; lerna clean -y"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "lerna": "^4.0.0",
+        "rimraf": "^3.0.2"
+    }
+}

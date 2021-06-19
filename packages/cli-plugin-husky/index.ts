@@ -16,10 +16,12 @@ class PluginTpl extends Plugin {
         // todo husky的安装
         const pkgPath = api.generatorAPI.findFile('package.json');
         if (pkgPath) {
+            const lernaConfPath = api.generatorAPI.findFile('lerna.json');
+
             const pkg = getJsonData(api.generatorAPI.files[pkgPath]);
             Object.assign(pkg.devDependencies = pkg.devDependencies || {}, {
                 'commitizen': '^4.2.4',
-                'conventional-changelog-cli': '^2.1.1',
+                // 'conventional-changelog-cli': '^2.1.1',
                 'cz-conventional-changelog': '^3.3.0',
                 'husky': '^6.0.0',
                 'standard-version': '^9.3.0',
@@ -29,10 +31,19 @@ class PluginTpl extends Plugin {
                     'path': './node_modules/cz-conventional-changelog',
                 },
             });
-            Object.assign(pkg.scripts = pkg.scripts || {}, {
-                'changelog': 'conventional-changelog -p angular -i CHANGELOG.md -s -r 0',
-                'release': 'HUSKY=0 standard-version --release-as',
-            });
+
+            if (lernaConfPath) {
+                Object.assign(pkg.scripts = pkg.scripts || {}, {
+                    'dump': 'HUSKY=0 lerna version',
+                    'release': 'lerna publish from-git --yes',
+                });
+            } else {
+                Object.assign(pkg.scripts = pkg.scripts || {}, {
+                    'dump': 'HUSKY=0 standard-version --release-as',
+                    'release': 'npm publish',
+                });
+            }
+            
 
             api.generatorAPI.files[pkgPath] = JSON.stringify(pkg, null, 4);
 

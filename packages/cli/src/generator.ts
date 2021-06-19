@@ -1,9 +1,9 @@
 import * as path from 'path';
 
-import { readFileSync } from 'fs-extra';
+import { readdirSync, statSync , readFileSync, mkdirpSync } from 'fs-extra';
 import globby from 'globby';
 import { loadFront } from 'yaml-front-matter';
-import { locateCallFile, writeFiles } from '@pokemonon/knife/node';
+import { locateCallFile, writeFile } from '@pokemonon/knife/node';
 import { sureArray } from '@pokemonon/knife';
 import { render as ejsRender } from 'ejs';
 
@@ -11,6 +11,7 @@ import Container, { Context } from './Container';
 
 const replaceBlockRE = /<%# REPLACE %>([^]*?)<%# END_REPLACE %>/;
 const emptyBlckRE = /<%# Empty %>([^]*?)<%# Empty %>/;
+const EmptyDir = '__EMPTY_DIR__';
 
 export class GeneratorAPI extends Container {
     files: Record<string, string> = {}
@@ -26,6 +27,7 @@ export class GeneratorAPI extends Container {
         // todo 排除不必要的文件
         const filePaths = globby.sync(['**/*'], {
             cwd: this.ctx.appPath,
+            // onlyFiles: false
         });
         filePaths.forEach(p => {
             const targetPath = path.resolve(this.ctx.appPath, p);
@@ -39,7 +41,12 @@ export class GeneratorAPI extends Container {
         
         source = path.resolve(callDir, source);
         const data = this.resolveData(additionData);
-        const filePaths = globby.sync(['**/*'], { cwd: source, dot: true });
+        const filePaths = globby.sync(['**/*'], {
+            cwd: source,
+            dot: true,
+            onlyFiles: false,
+        });
+
         for (const filePath of filePaths) {
             const sourceFilePath = path.resolve(source, filePath);
             const targetPath = filePath.split(path.sep).map(p => {
@@ -51,6 +58,14 @@ export class GeneratorAPI extends Container {
                 }
                 return p;
             }).join(path.sep);
+
+            const stats = statSync(sourceFilePath);
+            // 空文件夹
+            if (stats.isDirectory() && !readdirSync(sourceFilePath).length) {
+                this.files[targetPath] = EmptyDir;
+                return false;
+            }
+
             const content = this.renderFile(sourceFilePath, targetPath, data, ejsOptions);
             this.files[targetPath] = content;
         }
@@ -107,7 +122,16 @@ export class GeneratorAPI extends Container {
     }
 
     generate() {
-        writeFiles(this.ctx.appPath, this.files);
+        // writeFiles(this.ctx.appPath, this.files);
+        Object.keys(this.files).forEach(filePath => {
+            const content = this.files[filePath];
+            filePath = path.resolve(this.ctx.appPath, filePath);
+            if (content === EmptyDir) {
+                mkdirpSync(filePath);
+            } else {
+                writeFile(filePath, content);
+            }
+        });
     }
 
     findFile(path: string) {
