@@ -8,7 +8,8 @@
         "access": "public"
     },
     "scripts": {
-        "build": "tsup index.ts --out-dir ."
+        "build": "tsup index.ts --onSuccess 'mv dist/index.js ./index.js'",
+        "dev": "npm run build -- --watch index.ts"
     },
     "dependencies": {
         "@pokemonon/knife": "^1.0.0-beta.6",

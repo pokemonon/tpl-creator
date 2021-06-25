@@ -55,9 +55,9 @@ class PluginTpl extends Plugin {
                     // todo 没有安装git
                     return;
                 }
-
+                // console.log(this.ctx.appPath);
                 await execa('git', ['init'], { cwd: this.ctx.appPath });
-                await execa('git', ['config', '--local', 'core.hooksPath', '.husky'], { cwd: this.ctx.appName });
+                await execa('git', ['config', '--local', 'core.hooksPath', '.husky'], { cwd: this.ctx.appPath });
             });
 
         }
