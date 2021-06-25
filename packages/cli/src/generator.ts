@@ -49,7 +49,8 @@ export class GeneratorAPI extends Container {
 
         for (const filePath of filePaths) {
             const sourceFilePath = path.resolve(source, filePath);
-            const targetPath = filePath.split(path.sep).map(p => {
+            
+            let targetPath = filePath.split(path.sep).map(p => {
                 if (p[0] === '_' && p[1] !== '_') {
                     return `.${p.slice(1)}`;
                 }
@@ -58,12 +59,17 @@ export class GeneratorAPI extends Container {
                 }
                 return p;
             }).join(path.sep);
+            targetPath = path.resolve(this.ctx.appPath, targetPath);
 
             const stats = statSync(sourceFilePath);
-            // 空文件夹
-            if (stats.isDirectory() && !readdirSync(sourceFilePath).length) {
-                this.files[targetPath] = EmptyDir;
-                return false;
+            // 文件夹
+            if (stats.isDirectory()) {
+                // 空文件夹
+                if (!readdirSync(sourceFilePath).length) {
+                    this.files[targetPath] = EmptyDir;
+                }
+                // return false;
+                continue;
             }
 
             const content = this.renderFile(sourceFilePath, targetPath, data, ejsOptions);
@@ -125,7 +131,7 @@ export class GeneratorAPI extends Container {
         // writeFiles(this.ctx.appPath, this.files);
         Object.keys(this.files).forEach(filePath => {
             const content = this.files[filePath];
-            filePath = path.resolve(this.ctx.appPath, filePath);
+            // filePath = path.resolve(this.ctx.appPath, filePath);
             if (content === EmptyDir) {
                 mkdirpSync(filePath);
             } else {

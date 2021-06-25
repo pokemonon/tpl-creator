@@ -14,8 +14,8 @@
     },
     "scripts": {
         "build": "npm run clean && npm run build:cli && npm run build:src",
-        "build:cli": "tsup bin",
-        "build:src": "tsup src/index.ts --dts",
+        "build:cli": "tsup bin --sourcemap",
+        "build:src": "tsup src/index.ts --dts --sourcemap",
         "dev": "npm run build:cli -- --watch & npm run build:src -- --watch",
         "clean": "rimraf dist"
     },

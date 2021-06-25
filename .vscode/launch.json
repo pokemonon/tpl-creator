@@ -8,14 +8,17 @@
             "type": "node",
             "request": "launch",
             "name": "cli test",
-            "cwd": "${workspaceFolder}/packages/cli/example",
+            "cwd": "${workspaceFolder}/examples",
+            "console": "integratedTerminal",
             "runtimeExecutable": "tpl",
             // "runtimeArgs": ["create", "appName", "-P", "./preset1"]
             "runtimeArgs": [
                 "create",
                 "app",
-                "--inlinePreset", "[\"./preset1\", {\"language\": \"css\"}]",
-                "-p", "./plugin2"
+                "-P",
+                "../packages/cli-preset-lerna"
+                // "--inlinePreset", "[\"./preset1\", {\"language\": \"css\"}]",
+                // "-p", "./plugin2"
             ]
         }
     ]

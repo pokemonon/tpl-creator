@@ -1,0 +1,20 @@
+{
+    "name": "@pokemonon/tpl-cli-preset-lerna",
+    "version": "0.0.0",
+    "description": "lerna template",
+    "main": "index.js",
+    "license": "MIT",
+    "scripts": {
+        "build": "tsup index.ts --out-dir ."
+    },
+    "dependencies": {
+        "@pokemonon/tpl-cli": "^0.0.0",
+        "@pokemonon/tpl-cli-plugin-eslint": "^0.0.0",
+        "@pokemonon/tpl-cli-plugin-husky": "^0.0.0",
+        "@pokemonon/tpl-cli-plugin-lerna": "^0.0.0"
+    },
+    "devDependencies": {
+        "tsup": "^4.11.1",
+        "typescript": "^4.3.2"
+    }
+}

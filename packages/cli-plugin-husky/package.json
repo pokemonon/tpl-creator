@@ -1,5 +1,5 @@
 {
-    "name": "@pokemonon/cli-plugin-husky",
+    "name": "@pokemonon/tpl-cli-plugin-husky",
     "version": "0.0.0",
     "description": "husky",
     "main": "index.js",

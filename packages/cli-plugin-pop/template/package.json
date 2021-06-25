@@ -5,7 +5,8 @@
     "main": "index.js",
     "license": "MIT",
     "scripts": {
-        "build": "tsup index.ts --out-dir ."
+        "build": "tsup index.ts --onSuccess 'mv dist/index.js ./index.js'",
+        "dev": "npm run build -- --watch index.ts"
     },
     "dependencies": {
         "@pokemonon/tpl-cli": "^0.0.0"

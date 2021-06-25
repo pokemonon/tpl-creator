@@ -66,9 +66,9 @@ yarn workspaces run clean
 ```
 
 ### build
-[ ] 构建顺序
+- [ ] 构建顺序
 
 ### publish
 https://www.ruanyifeng.com/blog/2016/01/commit_message_change_log.html
-[ ] 根据commit生成changeLog
-[ ] commit规范 https://github.com/commitizen/cz-cli
+- [ ] 根据commit生成changeLog
+- [ ] commit规范 https://github.com/commitizen/cz-cli

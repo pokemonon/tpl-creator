@@ -43,12 +43,10 @@ class PluginTpl extends Plugin {
                     'release': 'npm publish',
                 });
             }
-            
 
             api.generatorAPI.files[pkgPath] = JSON.stringify(pkg, null, 4);
 
             api.render('./templates/npm');
-
 
             api.hooks.afterGenerate.tapPromise('cli-plugin-husky', async () => {
                 chmodSync(api.generatorAPI.findFile('prepare-commit-msg')!, '777');
@@ -58,8 +56,8 @@ class PluginTpl extends Plugin {
                     return;
                 }
 
-                await execa('git', ['init']);
-                await execa('git', ['config', '--local', 'core.hooksPath', '.husky']);
+                await execa('git', ['init'], { cwd: this.ctx.appPath });
+                await execa('git', ['config', '--local', 'core.hooksPath', '.husky'], { cwd: this.ctx.appName });
             });
 
         }

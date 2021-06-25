@@ -1,7 +1,7 @@
 {
-    "name": "@pokemonon/tpl-cli-plugin-eslint",
+    "name": "cli-plugin-typescript",
     "version": "0.0.0",
-    "description": "tpl plugin for eslint",
+    "description": "typescript",
     "main": "index.js",
     "license": "MIT",
     "scripts": {
@@ -9,7 +9,6 @@
         "dev": "npm run build -- --watch index.ts"
     },
     "dependencies": {
-        "@pokemonon/knife": "^1.0.0-beta.6",
         "@pokemonon/tpl-cli": "^0.0.0"
     },
     "devDependencies": {

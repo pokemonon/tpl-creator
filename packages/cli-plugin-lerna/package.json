@@ -1,5 +1,5 @@
 {
-    "name": "cli-plugin-lerna",
+    "name": "@pokemonon/tpl-cli-plugin-lerna",
     "version": "0.0.0",
     "description": "monorepo of lerna",
     "main": "index.js",
