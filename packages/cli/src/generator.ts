@@ -27,6 +27,7 @@ export class GeneratorAPI extends Container {
         // todo 排除不必要的文件
         const filePaths = globby.sync(['**/*'], {
             cwd: this.ctx.appPath,
+            gitignore: true,
             // onlyFiles: false
         });
         filePaths.forEach(p => {
