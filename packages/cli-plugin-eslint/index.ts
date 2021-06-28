@@ -19,7 +19,7 @@ class PluginTpl extends Plugin {
             // Object.assign((pkg.dependencies = pkg.dependencies || {}), {});
             Object.assign((pkg.devDependencies = pkg.devDependencies || {}), {
                 'eslint': '^7.27.0',
-                '@pokemonon/eslint-plugin-common': '~0.0.1',
+                '@pokemonon/eslint-plugin-common': '^0.0.1',
             });
 
             api.generatorAPI.files[pkgPath] = JSON.stringify(pkg, null, 4);

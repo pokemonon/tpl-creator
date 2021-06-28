@@ -102,17 +102,22 @@ export class GeneratorAPI extends Container {
             } else {
                 finalTpl = content;
             }
-            return finalTpl;
-        }
-
-        if (frontMatter.replace) {
-            if (content.match(emptyBlckRE)) {
-                return content.match(emptyBlckRE)![1];
+            // return finalTpl;
+        } else {
+            if (frontMatter.replace) {
+                // 如果没有存在同名文件，则使用EmptyBlock部分
+                if (content.match(emptyBlckRE)) {
+                    // return content.match(emptyBlckRE)![1];
+                    finalTpl = content.match(emptyBlckRE)![1];
+                }
+            } else {
+                finalTpl = content;
             }
         }
+
         // return content;
         const info = this.resolveData(data);
-        return ejsRender(content, info, ejsOpts);
+        return ejsRender(finalTpl, info, ejsOpts);
         // if (tFile) {
         //     const 
         // }
