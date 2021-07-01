@@ -25,9 +25,10 @@ export class GeneratorAPI extends Container {
     resolveFiles() {
         // todo 文件多大过多？
         // todo 排除不必要的文件
-        const filePaths = globby.sync(['**/*'], {
+        const filePaths = globby.sync(['**/*', '!(.git)'], {
             cwd: this.ctx.appPath,
             gitignore: true,
+            dot: true,
             // onlyFiles: false
         });
         filePaths.forEach(p => {
@@ -93,8 +94,10 @@ export class GeneratorAPI extends Container {
             if (frontMatter.replace) {
                 const replaceRegs: RegExp[] = sureArray(frontMatter.replace);
 
-                const replaceMatch = content.match(new RegExp(replaceBlockRE, 'g'));
-                const replaceStrs = replaceMatch ? replaceMatch.map(str => str.replace(replaceBlockRE, '$1').trim()) : content;
+                const replaceMatch = content.match(new RegExp(replaceBlockRE, 'g'))!;
+
+                // const replaceStrs = replaceMatch ? replaceMatch.map(str => str.replace(replaceBlockRE, '$1').trim()) : content;
+                const replaceStrs = replaceMatch.map(str => str.replace(replaceBlockRE, '$1').trim());
                 
                 replaceRegs.forEach((reg, i) => {
                     finalTpl = finalTpl.replace(reg, replaceStrs[i]);
@@ -108,7 +111,9 @@ export class GeneratorAPI extends Container {
                 // 如果没有存在同名文件，则使用EmptyBlock部分
                 if (content.match(emptyBlckRE)) {
                     // return content.match(emptyBlckRE)![1];
-                    finalTpl = content.match(emptyBlckRE)![1];
+                    finalTpl = content.match(emptyBlckRE)![1].trim();
+                } else if (content.match(replaceBlockRE)) {
+                    finalTpl = content.match(replaceBlockRE)![1].trim();
                 }
             } else {
                 finalTpl = content;
