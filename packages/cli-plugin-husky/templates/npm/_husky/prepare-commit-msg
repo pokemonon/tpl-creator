@@ -1,5 +1,5 @@
 ---
-replace: !!js/regexp /#!\/bin\/sh.*husky.sh"/
+replace: !!js/regexp /#!\/bin\/sh(.|\n)*husky.sh"/
 ---
 
 <%# REPLACE %>
